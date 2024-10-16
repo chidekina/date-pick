@@ -1,7 +1,5 @@
 const monthsName = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
-let monthSelected = month.value;
-let yearSelected = year.value;
-let daysqt = 0;
+
 
 
 for (let i = 2024; i >= 1924; i--){
@@ -17,6 +15,9 @@ for(let i = 1; i <= 31; i++){
 }
 
 month.onchange = () => {
+    let monthSelected = month.value;
+    let yearSelected = year.value;
+    let daysqt = 0;
 
     if(monthSelected == 1 || monthSelected == 3 || monthSelected == 5 || monthSelected == 7 || monthSelected == 8 || monthSelected == 10 || monthSelected == 12) daysqt = 31;
     else if (monthSelected == 4 || monthSelected == 6 || monthSelected == 9 || monthSelected == 11) daysqt = 30;
@@ -33,10 +34,16 @@ month.onchange = () => {
 }
 
 year.onchange = () => {
-    console.log(monthSelected)
+    let monthSelected = Number(month.value);
+    let yearSelected = year.value;
+
     if (monthSelected == 2){
         if(yearSelected % 400 == 0 || yearSelected % 4 == 0 && yearSelected % 100 != 0) daysqt = 29;
         else daysqt = 28;
+    }
+
+    for(let i = 1; i <= daysqt; i++){
+        day.innerHTML += `<option>${i}</option>`;
     }
 }
 
